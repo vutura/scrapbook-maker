@@ -1,0 +1,12 @@
+/* src/styles/fonts.css */
+@font-face {
+    font-family: 'Serial B Bold';
+    src: url('../assets/fonts/SerialB-BoldBlur.woff') format('woff');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Serial B Thin';
+    src: url('../assets/fonts/SerialB-Thin.woff') format('woff');
+    font-display: swap;
+}
