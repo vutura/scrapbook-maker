@@ -9,7 +9,10 @@ const Navbar = ({ currentColor, onColorChange }) => {
   const [showAbout, setShowAbout] = useState(false);
   
   return (
-    <nav className="relative bg-transparent py-4 px-4" style={{ zIndex: 1000 }}>
+    <nav 
+      className="relative bg-transparent py-4 px-4 navbar" 
+      style={{ zIndex: 9999 }}
+    >
       <div className="container mx-auto flex justify-between items-center">
         <h1 className="font-serialb text-base">
           scrapbook maker
@@ -30,7 +33,11 @@ const Navbar = ({ currentColor, onColorChange }) => {
             creations
           </button>
           
-          <div className="relative">
+          <div 
+            className="relative"
+            style={{ zIndex: 9999 }}
+            onClick={(e) => e.stopPropagation()}
+          >
             <ColorPicker 
               currentColor={currentColor}
               onColorChange={onColorChange}

@@ -50,11 +50,14 @@ function App() {
   };
 
   const handleGlobalClick = (e) => {
+    // Verificar si el clic es en un área específica
     const isSticker = e.target.closest('.placed-sticker');
-    const isPanel = e.target.closest('.stickers-panel');
+    const isColorPicker = e.target.closest('[data-color-picker]');
+    const isStickersPanel = e.target.closest('.stickers-panel');
     const isNavbar = e.target.closest('.navbar');
     
-    if (!isSticker && !isPanel && !isNavbar) {
+    // Solo desactivar sticker si se hace clic fuera de estas áreas
+    if (!isSticker && !isColorPicker && !isStickersPanel && !isNavbar) {
       setActiveStickerId(null);
     }
   };
@@ -63,14 +66,25 @@ function App() {
     <ErrorBoundary
       FallbackComponent={ErrorFallback}
       onReset={() => {
-        // Reset the state of your app here
         setActiveStickerId(null);
       }}
     >
-      {showWelcome && <WelcomeModal onClose={handleWelcomeClose} />}
+      {showWelcome && (
+        <div 
+          className="fixed inset-0 z-[9999] pointer-events-auto"
+          style={{ 
+            background: 'rgba(0,0,0,0.3)', 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center' 
+          }}
+        >
+          <WelcomeModal onClose={handleWelcomeClose} />
+        </div>
+      )}
   
       <div 
-        className={`flex flex-col min-h-screen ${showWelcome ? 'pointer-events-none blur-sm' : ''}`}
+        className={`flex flex-col min-h-screen ${showWelcome ? 'opacity-50 pointer-events-none' : ''}`}
         style={{ 
           background: typeof backgroundColor === 'string' && !backgroundColor.includes('gradient') 
             ? backgroundColor 

@@ -1,10 +1,8 @@
 // src/components/StickersPanel.jsx
 import { useState, useEffect, useMemo } from 'react';
-import { List, AutoSizer } from 'react-virtualized';
 import { stickersConfig } from '../config/stickers';
-import { filterStickers, enhanceSticker } from '../utils/search';
+import { filterStickers } from '../utils/search';
 import { useErrorHandling } from '../hooks/useOptimizedRendering';
-
 
 const StickersPanel = () => {
   const [isPanelVisible, setIsPanelVisible] = useState(true);
@@ -41,7 +39,8 @@ const StickersPanel = () => {
     }
   }, [selectedCategory, searchTerm, addError]);
 
-  const handlePanelToggle = () => {
+  const handlePanelToggle = (e) => {
+    e.stopPropagation(); // Prevent event from propagating
     if (!isPanelVisible) {
       setIsPanelVisible(true);
     } else if (!isPanelExpanded) {
@@ -78,7 +77,10 @@ const StickersPanel = () => {
   };
 
   return (
-    <div className="fixed right-0 top-0 h-full flex items-center stickers-panel" style={{ zIndex: 9999 }}>
+    <div 
+      className="fixed right-0 top-0 h-full flex items-center stickers-panel" 
+      style={{ zIndex: 1000 }}
+    >
       {/* Toggle Button */}
       <button
         onClick={handlePanelToggle}
@@ -87,7 +89,7 @@ const StickersPanel = () => {
                    hover:bg-white/90 transition-all duration-300"
         style={{
           right: isPanelVisible ? (isPanelExpanded ? '480px' : '320px') : '0',
-          zIndex: 10000, // Increased from 900
+          zIndex: 1001
         }}
         aria-label={isPanelVisible ? 'Adjust stickers panel' : 'Show stickers panel'}
       >
@@ -105,7 +107,8 @@ const StickersPanel = () => {
                     transition-all duration-300 ease-in-out
                     ${isPanelExpanded ? 'w-[480px]' : 'w-80'}
                     ${isPanelVisible ? 'translate-x-0' : 'translate-x-full'}`}
-        style={{ zIndex: 9999 }}
+        style={{ zIndex: 1000 }}
+        onClick={(e) => e.stopPropagation()} // Prevent event from propagating
       >
         <div className="h-full flex flex-col p-4">
           {/* Search Bar */}
@@ -118,13 +121,17 @@ const StickersPanel = () => {
               className="w-full px-4 py-2 rounded-full bg-white/80 border border-gray-100
                        focus:outline-none focus:ring-2 focus:ring-pink-100
                        placeholder:text-gray-400 text-sm"
+              onClick={(e) => e.stopPropagation()} // Prevent event from propagating
             />
           </div>
 
           {/* Categories */}
           <div className="flex gap-2 mb-4 overflow-x-auto pb-2 hide-scrollbar">
             <button
-              onClick={() => setSelectedCategory('all')}
+              onClick={(event) => {
+                event.stopPropagation();
+                setSelectedCategory('all');
+              }}
               className={`px-4 py-1 rounded-full text-sm whitespace-nowrap
                         transition-colors duration-200 flex-shrink-0
                         ${selectedCategory === 'all'
@@ -137,7 +144,10 @@ const StickersPanel = () => {
             {stickersConfig.categories.map((category) => (
               <button
                 key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  setSelectedCategory(category.id);
+                }}
                 className={`px-4 py-1 rounded-full text-sm whitespace-nowrap
                           transition-colors duration-200 flex-shrink-0
                           ${selectedCategory === category.id
@@ -165,6 +175,7 @@ const StickersPanel = () => {
                              transition-all duration-200"
                   draggable="true"
                   onDragStart={(e) => handleStickerDragStart(e, sticker)}
+                  onClick={(e) => e.stopPropagation()} // Prevent event from propagating
                 >
                   <img
                     src={sticker.src}
