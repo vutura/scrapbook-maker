@@ -33,24 +33,20 @@ const Canvas = ({ activeStickerId, setActiveStickerId }) => {
     addNotification('Canvas cleared', 'info');
   };
 
-  // ⬇️ THIS FUNCTION NOW RETURNS A PROMISE THAT RESOLVES WITH THE DATA URL ⬇️
   const generatePreview = async (options) => {
     try {
       const canvasElement = canvasRef.current;
       if (!canvasElement) return null;
 
       setIsGeneratingPreview(true);
-
-      // Clear any existing timeout so we can "debounce" preview generation
       if (previewTimeout.current) {
         clearTimeout(previewTimeout.current);
       }
 
-      // Wrap setTimeout in a Promise; the caller (SaveModal) awaits this.
       return await new Promise((resolve, reject) => {
         previewTimeout.current = setTimeout(async () => {
           try {
-            // Create a hidden wrapper to replicate our canvas area
+
             const wrapper = document.createElement('div');
             wrapper.style.position = 'absolute';
             wrapper.style.left = '-9999px';
@@ -58,23 +54,18 @@ const Canvas = ({ activeStickerId, setActiveStickerId }) => {
             wrapper.style.width = canvasElement.offsetWidth + 'px';
             wrapper.style.height = canvasElement.offsetHeight + 'px';
 
-            // If gradient or solid, set background
             if (options.backgroundType === 'gradient') {
               wrapper.style.background = options.background; // already linear-gradient(...)
             } else if (options.backgroundType === 'solid') {
               wrapper.style.backgroundColor = options.background;
             }
-            // If 'none', we pass null to html2canvas below (transparent)
 
-            // Clone the actual canvas area (including stickers)
             const clone = canvasElement.cloneNode(true);
             wrapper.appendChild(clone);
             document.body.appendChild(wrapper);
 
-            // Prepare html2canvas options
             const html2canvasOptions = {
               backgroundColor: options.backgroundType === 'none' ? null : null, 
-              // 'none' => full transparency, otherwise you can set your own BG color
               scale: options.quality === 'high' ? 2 : 1,
               useCORS: true,
               allowTaint: true,
