@@ -12,7 +12,9 @@ const WelcomeModal = ({ onClose }) => {
 
   const handleClose = () => {
     if (dontShowAgain) {
+      // Ensure both flags are set to prevent future shows
       localStorage.setItem('neverShowWelcome', 'true');
+      localStorage.setItem('hasVisitedScrapbook', 'true');
     }
     onClose();
   };
@@ -42,7 +44,6 @@ const WelcomeModal = ({ onClose }) => {
             scrollbarColor: '#F9A8D4 #FFF1F2'
           }}
         >
-          {/* Rest of the existing content... */}
           {/* Header */}
           <div className="text-center mb-8">
             <h2 className="font-serialb text-2xl mb-2 text-pink-500">
@@ -53,6 +54,7 @@ const WelcomeModal = ({ onClose }) => {
             </p>
           </div>
 
+          {/* Rest of the content remains the same as in the previous version */}
           {/* Sections */}
           <div className="space-y-6">
             {/* Getting Started */}

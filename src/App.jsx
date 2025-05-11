@@ -28,17 +28,30 @@ function ErrorFallback({ error, resetErrorBoundary }) {
 
 function App() {
   const [backgroundColor, setBackgroundColor] = useState('#FFE4E6');
-  const [showWelcome, setShowWelcome] = useState(true);
+  const [showWelcome, setShowWelcome] = useState(null);
   const [activeStickerId, setActiveStickerId] = useState(null);
   const { errors, notifications, addError, addNotification } = useErrorHandling();
 
   useEffect(() => {
+    // Check if this is the first time loading the app
+    const neverShow = localStorage.getItem('neverShowWelcome');
+    const hasVisited = localStorage.getItem('hasVisitedScrapbook');
+
+    // Only show welcome modal if it hasn't been disabled and hasn't been visited before
     if (import.meta.env.MODE !== 'development') {
-      const neverShow = localStorage.getItem('neverShowWelcome');
-      const hasVisited = localStorage.getItem('hasVisitedScrapbook');
-      if (neverShow === 'true' || hasVisited) {
+      if (neverShow !== 'true' && !hasVisited) {
+        // Use a small timeout to ensure initial render is complete
+        const timer = setTimeout(() => {
+          setShowWelcome(true);
+        }, 100);
+
+        return () => clearTimeout(timer);
+      } else {
         setShowWelcome(false);
       }
+    } else {
+      // Always show in development mode
+      setShowWelcome(true);
     }
   }, []);
 
@@ -61,6 +74,12 @@ function App() {
       setActiveStickerId(null);
     }
   };
+
+  // Renderizado condicional basado en el estado de showWelcome
+  if (showWelcome === null) {
+    // Mostrar un contenedor vacío mientras se determina si mostrar el modal
+    return null;
+  }
 
   return (
     <ErrorBoundary
