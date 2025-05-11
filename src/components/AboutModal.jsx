@@ -20,7 +20,7 @@ const AboutModal = ({ onClose }) => {
                     <p className="font-serialt text-gray-600">
                     hi! I'm Vutura, a junior software engineer with a passion for art, cute things, and technology. 
                     this project was born from my desire to create something that perfectly blends all these elements 
-                    together !
+                    together !!
                     </p>
                     
                     <p className="font-serialt text-gray-600">
@@ -30,6 +30,10 @@ const AboutModal = ({ onClose }) => {
                     <p className="font-serialt text-gray-600">
                     built with react, tailwind css and lots of love, this project showcases a journey into learning and creating 
                     interactive web applications with a focus on user experience and design.
+                    </p>
+
+                    <p className="font-serialt text-gray-600">
+                    THIS IS STILL A WORK IN PROGRESS!!! YOU MAY ENCOUNTER SOME ERRORS OR UNFINISHED STUFF :-( 
                     </p>
 
                     <p className="font-serialt text-gray-600">
