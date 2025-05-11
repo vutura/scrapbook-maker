@@ -8,12 +8,9 @@ const SaveModal = ({ onClose, generatePreview, placedStickers }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [copyStatus, setCopyStatus] = useState('');
   const [showCustomColor, setShowCustomColor] = useState(false);
-
-  // We'll load 6 random gradients for the UI
   const [randomGradients, setRandomGradients] = useState(() => generateRandomGradients(6));
   const [customGradientPreset, setCustomGradientPreset] = useState(null);
 
-  // The user's chosen export settings
   const [settings, setSettings] = useState({
     backgroundType: 'gradient',
     background: '#FFE4E6',
@@ -24,12 +21,10 @@ const SaveModal = ({ onClose, generatePreview, placedStickers }) => {
     format: 'png'       // 'png' or 'jpeg'
   });
 
-  // Re-generate random gradients when modal opens
   useEffect(() => {
     setRandomGradients(generateRandomGradients(7));
   }, []);
 
-  // Example: analyzing sticker colors if you want to set a "From Your Creation" gradient
   useEffect(() => {
     const analyzeColors = async () => {
       if (placedStickers.length > 0) {
@@ -58,7 +53,6 @@ const SaveModal = ({ onClose, generatePreview, placedStickers }) => {
     analyzeColors();
   }, [placedStickers]);
 
-  // Every time settings change, re-generate the preview
   useEffect(() => {
     updatePreview();
   }, [settings]);
@@ -77,7 +71,7 @@ const SaveModal = ({ onClose, generatePreview, placedStickers }) => {
             ? `linear-gradient(${settings.gradientAngle}deg, ${settings.gradientStart}, ${settings.gradientEnd})`
             : settings.background
       };
-      const newPreview = await generatePreview(options); // WAIT for the data URL
+      const newPreview = await generatePreview(options); 
       setPreviewUrl(newPreview);
     } catch (error) {
       console.error('Error generating preview:', error);

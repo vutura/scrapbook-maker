@@ -17,9 +17,9 @@ const DragPreview = () => {
     }
 
     function handleDrag(e) {
-      if (e.clientX === 0 && e.clientY === 0) return; // Ignore invalid positions
+      if (e.clientX === 0 && e.clientY === 0) return; 
       setPosition({
-        x: e.clientX - 50, // Center the preview
+        x: e.clientX - 50,
         y: e.clientY - 50
       });
     }

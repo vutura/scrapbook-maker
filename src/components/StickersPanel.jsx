@@ -11,7 +11,6 @@ const StickersPanel = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const { addError, addNotification } = useErrorHandling();
 
-  // Filtered stickers based on search and category
   const filteredStickers = useMemo(() => {
     let stickers = [];
 
@@ -40,7 +39,7 @@ const StickersPanel = () => {
   }, [selectedCategory, searchTerm, addError]);
 
   const handlePanelToggle = (e) => {
-    e.stopPropagation(); // Prevent event from propagating
+    e.stopPropagation();
     if (!isPanelVisible) {
       setIsPanelVisible(true);
     } else if (!isPanelExpanded) {
@@ -65,7 +64,6 @@ const StickersPanel = () => {
     try {
       e.dataTransfer.setData('application/json', JSON.stringify(sticker));
       
-      // Set custom drag image
       const img = new Image();
       img.src = sticker.src;
       e.dataTransfer.setDragImage(img, img.width / 2, img.height / 2);
@@ -108,7 +106,7 @@ const StickersPanel = () => {
                     ${isPanelExpanded ? 'w-[480px]' : 'w-80'}
                     ${isPanelVisible ? 'translate-x-0' : 'translate-x-full'}`}
         style={{ zIndex: 1000 }}
-        onClick={(e) => e.stopPropagation()} // Prevent event from propagating
+        onClick={(e) => e.stopPropagation()}
       >
         <div className="h-full flex flex-col p-4">
           {/* Search Bar */}
@@ -121,7 +119,7 @@ const StickersPanel = () => {
               className="w-full px-4 py-2 rounded-full bg-white/80 border border-gray-100
                        focus:outline-none focus:ring-2 focus:ring-pink-100
                        placeholder:text-gray-400 text-sm"
-              onClick={(e) => e.stopPropagation()} // Prevent event from propagating
+              onClick={(e) => e.stopPropagation()} 
             />
           </div>
 

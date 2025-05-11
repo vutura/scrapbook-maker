@@ -17,7 +17,6 @@ const Canvas = ({ activeStickerId, setActiveStickerId }) => {
   const [showGrid, setShowGrid] = useState(false);
   const [gridSize, setGridSize] = useState(20);
 
-  // We'll use our own local 'isGeneratingPreview' to reflect the async states
   const [isGeneratingPreview, setIsGeneratingPreview] = useState(false);
 
   const canvasRef = useRef(null);
@@ -55,7 +54,7 @@ const Canvas = ({ activeStickerId, setActiveStickerId }) => {
             wrapper.style.height = canvasElement.offsetHeight + 'px';
 
             if (options.backgroundType === 'gradient') {
-              wrapper.style.background = options.background; // already linear-gradient(...)
+              wrapper.style.background = options.background;
             } else if (options.backgroundType === 'solid') {
               wrapper.style.backgroundColor = options.background;
             }
@@ -86,7 +85,7 @@ const Canvas = ({ activeStickerId, setActiveStickerId }) => {
           } catch (err) {
             reject(err);
           }
-        }, 300); // 300ms debounce
+        }, 300); 
       });
 
     } catch (error) {
@@ -107,7 +106,6 @@ const Canvas = ({ activeStickerId, setActiveStickerId }) => {
       const canvasRect = canvasRef.current.getBoundingClientRect();
       const stickerId = Date.now().toString();
 
-      // Create a temporary image to get natural dimensions
       const img = new Image();
       img.onload = () => {
         const finalWidth = img.naturalWidth;
@@ -203,7 +201,6 @@ const Canvas = ({ activeStickerId, setActiveStickerId }) => {
         }
       );
     } else if ('width' in newPosition || 'height' in newPosition) {
-      // Resize
       command = new ResizeStickerCommand(
         id,
         { width: currentSticker.position.width, height: currentSticker.position.height },
@@ -222,7 +219,6 @@ const Canvas = ({ activeStickerId, setActiveStickerId }) => {
         }
       );
     } else {
-      // Direct update
       setPlacedStickers((stickers) =>
         stickers.map((st) =>
           st.position.id === id

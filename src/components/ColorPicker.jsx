@@ -14,7 +14,6 @@ const ColorPicker = ({ currentColor, onColorChange }) => {
     { hex: '#F3E8FF', name: 'Lavender' },
   ];
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -26,7 +25,6 @@ const ColorPicker = ({ currentColor, onColorChange }) => {
       }
     };
 
-    // Add event listener only when dropdown is open
     if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside);
     }
@@ -52,7 +50,7 @@ const ColorPicker = ({ currentColor, onColorChange }) => {
       <button
         ref={buttonRef}
         onClick={(e) => {
-          e.stopPropagation(); // Prevent event from propagating
+          e.stopPropagation();
           setIsOpen(!isOpen);
         }}
         className="w-6 h-6 rounded-full border-2 border-current flex items-center justify-center hover:opacity-80 transition-opacity"
@@ -70,12 +68,12 @@ const ColorPicker = ({ currentColor, onColorChange }) => {
                      bg-white rounded-lg shadow-lg border border-gray-200
                      z-[9999]"
           style={{
-            position: 'absolute', // Changed from fixed
-            top: '100%', // Position right below the button
+            position: 'absolute',
+            top: '100%', 
             right: 0,
             zIndex: 9999
           }}
-          onClick={(e) => e.stopPropagation()} // Prevent clicks inside dropdown from closing
+          onClick={(e) => e.stopPropagation()} 
         >
           <div className="px-4 py-2 border-b border-gray-100">
             <span className="font-serialb text-sm text-gray-600">Change theme:</span>

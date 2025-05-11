@@ -71,7 +71,6 @@ const PlacedSticker = ({
   isActive, 
   onSelect 
 }) => {
-  // State
   const [isDragging, setIsDragging] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
   const [isRotating, setIsRotating] = useState(false);
@@ -79,13 +78,12 @@ const PlacedSticker = ({
   const [isFlipped, setIsFlipped] = useState(false);
   const [controlBarPosition, setControlBarPosition] = useState({ x: 0, y: 0 });
 
-  // Refs
   const stickerRef = useRef(null);
   const dragStartPos = useRef({ x: 0, y: 0 });
   const resizeStartPos = useRef({ x: 0, y: 0, width: 0, height: 0 });
   const rotationStartPos = useRef({ angle: 0, start: 0 });
 
-  // Effect to update control bar position
+
   useEffect(() => {
     if (isActive && stickerRef.current) {
         const updatePosition = () => {
@@ -105,13 +103,11 @@ const PlacedSticker = ({
     }
   }, [isActive, isDragging, isResizing, isRotating, position.x, position.y, position.width, position.height]);
 
-  // Calculate angle for rotation
   const getAngle = (center, point) => {
     const radians = Math.atan2(point.y - center.y, point.x - center.x);
     return radians * (180 / Math.PI);
   };
 
-  // --- Resize ---
   const handleResizeStart = (e, corner) => {
     e.preventDefault();
     e.stopPropagation();
@@ -152,7 +148,6 @@ const PlacedSticker = ({
     });
   };
 
-  // --- Rotation ---
   const handleRotationStart = (e, corner) => {
     e.preventDefault();
     e.stopPropagation();
@@ -185,7 +180,6 @@ const PlacedSticker = ({
     onPositionChange({ rotation: newRotation });
   };
 
-  // --- Movement (custom drag) ---
   const handleMouseDown = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -215,7 +209,6 @@ const PlacedSticker = ({
     onPositionChange({ x: newX, y: newY });
   };
 
-  // Global mouse up for finishing interactions
   useEffect(() => {
     const handleGlobalMouseMove = (e) => {
       if (isResizing) {
@@ -250,7 +243,6 @@ const PlacedSticker = ({
     };
   }, [isDragging, isResizing, isRotating]);
 
-  // --- Opacity control ---
   const handleOpacityChange = (e) => {
     e.stopPropagation();
     const newOpacity = e.target.value / 100;
@@ -318,7 +310,6 @@ const PlacedSticker = ({
       {isActive && (
         <>
           {['nw', 'ne', 'se', 'sw'].map((corner) => (
-            // Remove the wrapper div, each control is positioned independently
             <>
               {/* Resize handle */}
               <div

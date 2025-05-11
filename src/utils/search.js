@@ -6,7 +6,6 @@ export const enhanceSticker = (sticker, category) => {
       ...sticker.alt.toLowerCase().split(' ')
     ];
   
-    // Add specific tags based on categories
     switch (category.toLowerCase()) {
       case 'cats':
       case 'dogs':

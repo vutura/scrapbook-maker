@@ -33,14 +33,11 @@ function App() {
   const { errors, notifications, addError, addNotification } = useErrorHandling();
 
   useEffect(() => {
-    // Check if this is the first time loading the app
     const neverShow = localStorage.getItem('neverShowWelcome');
     const hasVisited = localStorage.getItem('hasVisitedScrapbook');
 
-    // Only show welcome modal if it hasn't been disabled and hasn't been visited before
     if (import.meta.env.MODE !== 'development') {
       if (neverShow !== 'true' && !hasVisited) {
-        // Use a small timeout to ensure initial render is complete
         const timer = setTimeout(() => {
           setShowWelcome(true);
         }, 100);
@@ -50,7 +47,6 @@ function App() {
         setShowWelcome(false);
       }
     } else {
-      // Always show in development mode
       setShowWelcome(true);
     }
   }, []);
@@ -63,21 +59,17 @@ function App() {
   };
 
   const handleGlobalClick = (e) => {
-    // Verificar si el clic es en un área específica
     const isSticker = e.target.closest('.placed-sticker');
     const isColorPicker = e.target.closest('[data-color-picker]');
     const isStickersPanel = e.target.closest('.stickers-panel');
     const isNavbar = e.target.closest('.navbar');
     
-    // Solo desactivar sticker si se hace clic fuera de estas áreas
     if (!isSticker && !isColorPicker && !isStickersPanel && !isNavbar) {
       setActiveStickerId(null);
     }
   };
 
-  // Renderizado condicional basado en el estado de showWelcome
   if (showWelcome === null) {
-    // Mostrar un contenedor vacío mientras se determina si mostrar el modal
     return null;
   }
 

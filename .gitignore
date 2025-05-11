@@ -10,7 +10,11 @@ lerna-debug.log*
 # Ignore environment files
 .env
 
+# Ignorar el script de subida de stickers
+uploadStickers.js
 
+# Ignore Cloudinary helper
+src/utils/cloudinary.js
 
 node_modules
 dist
