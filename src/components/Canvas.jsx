@@ -17,7 +17,7 @@ const Canvas = ({ activeStickerId, setActiveStickerId }) => {
   const [showGrid, setShowGrid] = useState(false);
   const [gridSize, setGridSize] = useState(20);
 
-  // We'll use our own local 'isGeneratingPreview' to reflect the async state
+  // We'll use our own local 'isGeneratingPreview' to reflect the async states
   const [isGeneratingPreview, setIsGeneratingPreview] = useState(false);
 
   const canvasRef = useRef(null);
