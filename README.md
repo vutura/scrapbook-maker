@@ -1,10 +1,10 @@
-# Scrapbook Maker 🖼️✨🌸
+# ⋆˚꩜｡ Scrapbook Maker ✨🌸
 
 > Welcome to your very own **virtual scrapbook**! Create, decorate, and cherish your creativity with cute stickers, colorful themes, and a sprinkle of magic. 🦋💖
 
 ---
 
-## 🌟 Features
+## 🌟 Features ⭑.ᐟ
 
 * **Drag & Drop Stickers** 🐰🐱: Easily place adorable stickers from a rich panel onto your canvas.
 * **Color Theme Picker** 🎨: Choose your favorite pastel background or gradient for a personal touch.
@@ -15,7 +15,7 @@
 
 ---
 
-## 🎉 Usage Tips
+## 🎉 Usage Tips ⭑.ᐟ
 
 1. **Hover** over the circle icon in the top right to pick a theme for the interface.
 2. **Drag** stickers onto the canvas—mix & match cute critters! 🦊🦋
@@ -27,7 +27,7 @@
 
 ## 💖 Contributing
 
-Contributions are welcome! Feel free to open issues or submit PRs with new sticker packs, feature ideas, or bug fixes. 🐞✨
+Contributions are welcome! Feel free to open issues or submit PRs with new sticker packs, feature ideas, or bug fixes. (๑>◡<๑)✨ 
 
 ---
 
@@ -37,4 +37,4 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 
 ---
 
-Happy scrapbooking! 🥰✨
+Happy scrapbooking! ₍ᐢ. .ᐢ₎ ₊˚⊹♡✨
