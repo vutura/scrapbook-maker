@@ -18,26 +18,26 @@ const AboutModal = ({ onClose }) => {
 
               {/* Description */}
               <div className="space-y-4">
-                <p className="font-serialt text-gray-600 font-bold">
+                <p className="font-serialt text-gray-600">
                 hi! I'm Vutura, a junior software engineer with a passion for art, cute things, and technology. 
                 this project was born from my desire to create something that perfectly blends all these elements 
                 together !!
                 </p>
-                <p className="font-serialt text-gray-600 font-bold">
+                <p className="font-serialt text-gray-600">
                 this the first project in my portfolio and i'm so excited for you to try it  💖
                 </p>
-                <p className="font-serialt text-gray-600 font-bold">
+                <p className="font-serialt text-gray-600 ">
                 built with react, tailwind css and lots of love, this project showcases a journey into learning and creating 
                 interactive web applications with a focus on user experience and design.
                 </p>
                 <p className="font-serialt text-gray-600 font-bold">
                 THIS IS STILL A WORK IN PROGRESS!!! YOU MAY ENCOUNTER SOME ERRORS OR UNFINISHED STUFF :-( SUPPORT IN SPANISH IS COMING SOON (๑•᎑•๑)
                 </p>
-                <p className="font-serialt text-gray-600 font-bold">
+                <p className="font-serialt text-gray-600 ">
                 once you've finished your creation, don't forget to save and share it! feel free to reach out to me on my profiles for feedback, suggestions, or any questions.
                 </p>
                 <div className="pt-4">
-                <p className="font-serialt text-gray-700 mb-3 font-bold">
+                <p className="font-serialt text-gray-700 mb-3">
                   if you enjoyed using Scrapbook Maker, consider supporting my work buying me a coffee ! you can donate as little as $1
                 </p>
                 <a
