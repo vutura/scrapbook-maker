@@ -10,6 +10,7 @@ const ColorPicker = ({ currentColor, onColorChange }) => {
     { hex: '#DCF9E7', name: 'Mint' },
     { hex: '#FEF9C3', name: 'Light Yellow' },
     { hex: '#F3E8FF', name: 'Lavender' },
+  
   ];
 
   return (

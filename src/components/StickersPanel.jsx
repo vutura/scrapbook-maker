@@ -5,7 +5,6 @@ import { stickersConfig } from '../config/stickers';
 import { filterStickers, enhanceSticker } from '../utils/search';
 import { useErrorHandling } from '../hooks/useOptimizedRendering';
 
-
 const StickersPanel = () => {
   const [isPanelVisible, setIsPanelVisible] = useState(true);
   const [isPanelExpanded, setIsPanelExpanded] = useState(false);

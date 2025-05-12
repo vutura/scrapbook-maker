@@ -17,7 +17,6 @@ const Canvas = ({ activeStickerId, setActiveStickerId }) => {
   const [showGrid, setShowGrid] = useState(false);
   const [gridSize, setGridSize] = useState(20);
 
-  // We'll use our own local 'isGeneratingPreview' to reflect the async state
   const [isGeneratingPreview, setIsGeneratingPreview] = useState(false);
 
   const canvasRef = useRef(null);
@@ -33,7 +32,6 @@ const Canvas = ({ activeStickerId, setActiveStickerId }) => {
     addNotification('Canvas cleared', 'info');
   };
 
-  // ⬇️ THIS FUNCTION NOW RETURNS A PROMISE THAT RESOLVES WITH THE DATA URL ⬇️
   const generatePreview = async (options) => {
     try {
       const canvasElement = canvasRef.current;
@@ -41,16 +39,13 @@ const Canvas = ({ activeStickerId, setActiveStickerId }) => {
 
       setIsGeneratingPreview(true);
 
-      // Clear any existing timeout so we can "debounce" preview generation
       if (previewTimeout.current) {
         clearTimeout(previewTimeout.current);
       }
 
-      // Wrap setTimeout in a Promise; the caller (SaveModal) awaits this.
       return await new Promise((resolve, reject) => {
         previewTimeout.current = setTimeout(async () => {
           try {
-            // Create a hidden wrapper to replicate our canvas area
             const wrapper = document.createElement('div');
             wrapper.style.position = 'absolute';
             wrapper.style.left = '-9999px';
@@ -64,7 +59,6 @@ const Canvas = ({ activeStickerId, setActiveStickerId }) => {
             } else if (options.backgroundType === 'solid') {
               wrapper.style.backgroundColor = options.background;
             }
-            // If 'none', we pass null to html2canvas below (transparent)
 
             // Clone the actual canvas area (including stickers)
             const clone = canvasElement.cloneNode(true);
@@ -74,7 +68,7 @@ const Canvas = ({ activeStickerId, setActiveStickerId }) => {
             // Prepare html2canvas options
             const html2canvasOptions = {
               backgroundColor: options.backgroundType === 'none' ? null : null, 
-              // 'none' => full transparency, otherwise you can set your own BG color
+              // 'none' => full transparency, otherwise you set your own BG color
               scale: options.quality === 'high' ? 2 : 1,
               useCORS: true,
               allowTaint: true,
@@ -116,7 +110,6 @@ const Canvas = ({ activeStickerId, setActiveStickerId }) => {
       const canvasRect = canvasRef.current.getBoundingClientRect();
       const stickerId = Date.now().toString();
 
-      // Create a temporary image to get natural dimensions
       const img = new Image();
       img.onload = () => {
         const finalWidth = img.naturalWidth;
