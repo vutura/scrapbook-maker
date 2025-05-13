@@ -345,7 +345,8 @@ const Canvas = ({ activeStickerId, setActiveStickerId }) => {
 
       <div
         ref={canvasRef}
-        className="w-full overflow-x-auto flex justify-center relative w-[1400px] h-[846px] canvas-container"
+        className="relative flex justify-center overflow-x-auto h-[846px] 
+            w-[95vw] sm:w-[1100px] md:w-[1200px] lg:w-[1400px] canvas-container"
         onDrop={handleDrop}
         onDragOver={(e) => e.preventDefault()}
       >
