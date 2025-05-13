@@ -346,7 +346,7 @@ const Canvas = ({ activeStickerId, setActiveStickerId }) => {
       <div
         ref={canvasRef}
         className="relative flex justify-center overflow-x-auto h-[846px] 
-            w-[95vw] sm:w-[1100px] md:w-[1200px] lg:w-[1400px] canvas-container"
+             w-[95vw] max-w-screen-sm sm:w-[1100px] md:w-[1200px] lg:w-[1400px] overflow-hidden canvas-container"
         onDrop={handleDrop}
         onDragOver={(e) => e.preventDefault()}
       >
@@ -359,7 +359,7 @@ const Canvas = ({ activeStickerId, setActiveStickerId }) => {
         <img
           src={sketchbookBase}
           alt="Empty sketchbook"
-          className="w-full h-full object-contain select-none"
+          className="max-w-full max-h-full object-contain select-none"
           draggable="false"
         />
 
