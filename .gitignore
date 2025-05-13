@@ -13,21 +13,13 @@ lerna-debug.log*
 # Ignorar el script de subida de stickers
 uploadStickers.js
 
-# Ignore Cloudinary helper
-src/utils/cloudinary.js
-
-src/hooks
 
 node_modules
 dist
 dist-ssr
 *.local
 
-# No trackear la carpeta de categorías de stickers
-src/config/stickerCategories/
 
-# No mostrar el directorio de hooks
-src/hooks/
 
 
 # Editor directories and files
