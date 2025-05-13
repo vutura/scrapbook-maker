@@ -16,7 +16,6 @@ const Canvas = ({ activeStickerId, setActiveStickerId }) => {
   const [showSaveModal, setShowSaveModal] = useState(false);
   const [showGrid, setShowGrid] = useState(false);
   const [gridSize, setGridSize] = useState(20);
-
   const [isGeneratingPreview, setIsGeneratingPreview] = useState(false);
 
   const canvasRef = useRef(null);
@@ -65,7 +64,6 @@ const Canvas = ({ activeStickerId, setActiveStickerId }) => {
 
             const html2canvasOptions = {
               backgroundColor: options.backgroundType === 'none' ? null : null, 
-              // 'none' => full transparency, otherwise you set your own BG color
               scale: options.quality === 'high' ? 2 : 1,
               useCORS: true,
               allowTaint: true,
@@ -330,53 +328,63 @@ const Canvas = ({ activeStickerId, setActiveStickerId }) => {
   }, [activeStickerId, undo, redo]);
 
   return (
-    <div className="relative">
-      <OptionsPanel
-        onUndo={undo}
-        onRedo={redo}
-        onClear={handleClearCanvas}
-        onSave={handleSave}
-        onToggleGrid={() => setShowGrid((prev) => !prev)}
-        showGrid={showGrid}
-        canUndo={canUndo}
-        canRedo={canRedo}
-        showPanel={placedStickers.length > 0}
-      />
-
-      <div
-        ref={canvasRef}
-        className="relative flex justify-center overflow-x-auto h-[846px] 
-             w-[95vw] max-w-screen-sm sm:w-[1100px] md:w-[1200px] lg:w-[1400px] overflow-hidden canvas-container"
-        onDrop={handleDrop}
-        onDragOver={(e) => e.preventDefault()}
-      >
-        <Grid 
-          visible={showGrid} 
-          size={gridSize} 
-          color="rgba(0, 0, 0, 0.1)"
+    <div className="flex justify-center items-center w-full">
+      <div className="relative w-full max-w-7xl mx-auto px-4">
+        <OptionsPanel
+          onUndo={undo}
+          onRedo={redo}
+          onClear={handleClearCanvas}
+          onSave={handleSave}
+          onToggleGrid={() => setShowGrid((prev) => !prev)}
+          showGrid={showGrid}
+          canUndo={canUndo}
+          canRedo={canRedo}
+          showPanel={placedStickers.length > 0}
         />
 
-        <img
-          src={sketchbookBase}
-          alt="Empty sketchbook"
-          className="max-w-full max-h-full object-contain select-none"
-          draggable="false"
-        />
-
-        {placedStickers.map((placed) => (
-          <PlacedSticker
-            key={placed.position.id}
-            id={placed.position.id}
-            sticker={placed.sticker}
-            position={placed.position}
-            isActive={activeStickerId === placed.position.id}
-            onSelect={() => setActiveStickerId(placed.position.id)}
-            onPositionChange={(newPos) => updateStickerPosition(placed.position.id, newPos)}
-            onDelete={() => deleteSticker(placed.position.id)}
-            onZIndexChange={(direction) => handleZIndexChange(placed.position.id, direction)}
-            snapToGrid={showGrid ? gridSize : null}
+        <div
+          ref={canvasRef}
+          className="relative flex justify-center items-center mx-auto aspect-[1.41/1] w-full min-w-[600px] lg:min-w-[900px] xl:min-w-[1000px] 2xl:min-w-[1200px] overflow-hidden canvas-container"
+          style={{
+            height: "auto",
+            minHeight: "70vh",
+            maxHeight: "85vh"
+          }}
+          onDrop={handleDrop}
+          onDragOver={(e) => e.preventDefault()}
+        >
+          <Grid 
+            visible={showGrid} 
+            size={gridSize} 
+            color="rgba(0, 0, 0, 0.1)"
           />
-        ))}
+
+          <img
+            src={sketchbookBase}
+            alt="Empty sketchbook"
+            className="w-full h-full object-contain select-none"
+            style={{
+              maxWidth: "100%",
+              maxHeight: "100%"
+            }}
+            draggable="false"
+          />
+
+          {placedStickers.map((placed) => (
+            <PlacedSticker
+              key={placed.position.id}
+              id={placed.position.id}
+              sticker={placed.sticker}
+              position={placed.position}
+              isActive={activeStickerId === placed.position.id}
+              onSelect={() => setActiveStickerId(placed.position.id)}
+              onPositionChange={(newPos) => updateStickerPosition(placed.position.id, newPos)}
+              onDelete={() => deleteSticker(placed.position.id)}
+              onZIndexChange={(direction) => handleZIndexChange(placed.position.id, direction)}
+              snapToGrid={showGrid ? gridSize : null}
+            />
+          ))}
+        </div>
       </div>
 
       {showSaveModal && (
