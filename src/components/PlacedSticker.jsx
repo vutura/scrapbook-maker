@@ -83,7 +83,6 @@ const PlacedSticker = ({
   const resizeStartPos = useRef({ x: 0, y: 0, width: 0, height: 0 });
   const rotationStartPos = useRef({ angle: 0, start: 0 });
 
-
   useEffect(() => {
     if (isActive && stickerRef.current) {
         const updatePosition = () => {

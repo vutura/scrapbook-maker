@@ -83,7 +83,7 @@ const ColorPicker = ({ currentColor, onColorChange }) => {
             <button
               key={color.hex}
               onClick={(e) => {
-                e.stopPropagation(); // Prevent event from propagating
+                e.stopPropagation();
                 handleColorSelect(color.hex);
               }}
               className="flex items-center w-full px-4 py-2 hover:bg-gray-50 transition-colors"

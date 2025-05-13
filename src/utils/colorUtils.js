@@ -50,7 +50,6 @@ export const getImageColors = async (imageUrl) => {
     });
   };
   
-
   const quantizeColor = (r, g, b) => {
     const step = 32;
     r = Math.round(r / step) * step;
@@ -87,10 +86,10 @@ export const getImageColors = async (imageUrl) => {
       const validColors = allColors
         .filter(colors => colors !== null && colors.length > 0)
         .flat()
-        .filter(color => color && color !== '#FFFFFF');
+        .filter(color => color && color !== '#FFFFFF'); 
   
       console.log('Found colors:', validColors);
-
+  
       return [
         validColors[0] || '#F4B185', 
         validColors[1] || '#F9C846' 

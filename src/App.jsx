@@ -95,7 +95,7 @@ function App() {
       )}
   
       <div 
-        className={`flex flex-col min-h-screen ${showWelcome ? 'opacity-50 pointer-events-none' : ''}`}
+        className={`flex flex-col min-h-screen px-4 sm:px-6 lg:px-8 ${showWelcome ? 'pointer-events-none blur-sm' : ''}`}
         style={{ 
           background: typeof backgroundColor === 'string' && !backgroundColor.includes('gradient') 
             ? backgroundColor 

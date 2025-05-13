@@ -15,7 +15,7 @@ const Navbar = ({ currentColor, onColorChange }) => {
     >
       <div className="container mx-auto flex justify-between items-center">
         <h1 className="font-serialb text-base">
-          scrapbook maker
+          scrapbook maker ｡𖦹°‧
         </h1>
         
         <div className="flex items-center gap-6">

@@ -38,6 +38,7 @@ const Canvas = ({ activeStickerId, setActiveStickerId }) => {
       if (!canvasElement) return null;
 
       setIsGeneratingPreview(true);
+
       if (previewTimeout.current) {
         clearTimeout(previewTimeout.current);
       }
@@ -45,7 +46,6 @@ const Canvas = ({ activeStickerId, setActiveStickerId }) => {
       return await new Promise((resolve, reject) => {
         previewTimeout.current = setTimeout(async () => {
           try {
-
             const wrapper = document.createElement('div');
             wrapper.style.position = 'absolute';
             wrapper.style.left = '-9999px';
@@ -65,6 +65,7 @@ const Canvas = ({ activeStickerId, setActiveStickerId }) => {
 
             const html2canvasOptions = {
               backgroundColor: options.backgroundType === 'none' ? null : null, 
+              // 'none' => full transparency, otherwise you set your own BG color
               scale: options.quality === 'high' ? 2 : 1,
               useCORS: true,
               allowTaint: true,
@@ -344,7 +345,7 @@ const Canvas = ({ activeStickerId, setActiveStickerId }) => {
 
       <div
         ref={canvasRef}
-        className="relative w-[1400px] h-[846px] canvas-container"
+        className="w-full overflow-x-auto flex justify-center relative w-[1400px] h-[846px] canvas-container"
         onDrop={handleDrop}
         onDragOver={(e) => e.preventDefault()}
       >

@@ -1,4 +1,3 @@
-// Create a new component DragPreview.jsx
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 

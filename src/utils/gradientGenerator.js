@@ -19,25 +19,24 @@ const softColors = [
     '#FFF5E7', // vanilla
     '#FFE8CC', // soft orange
     '#EEDDFF', // light purple
-    '#CCA7FF'  // medium purple
+    '#CCA7FF',  // medium purple
+    '#F0E1FF', // light lilac
   ];
-  //get randm color from array
+  
   const getRandomColor = () => {
     return softColors[Math.floor(Math.random() * softColors.length)];
   };
-  //get random angle
+  
   const getRandomAngle = () => {
     const angles = [45, 60, 90, 120, 135, 180];
     return angles[Math.floor(Math.random() * angles.length)];
   };
   
-  //set of random gradientss
   export const generateRandomGradients = (count = 6) => {
     const gradients = [];
     for (let i = 0; i < count; i++) {
       const startColor = getRandomColor();
       let endColor = getRandomColor();
-      // Make sure end color is different from start color
       while (endColor === startColor) {
         endColor = getRandomColor();
       }

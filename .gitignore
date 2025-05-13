@@ -23,6 +23,13 @@ dist
 dist-ssr
 *.local
 
+# No trackear la carpeta de categorías de stickers
+src/config/stickerCategories/
+
+# No mostrar el directorio de hooks
+src/hooks/
+
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

@@ -4,11 +4,11 @@ import React from 'react';
 const AboutModal = ({ onClose }) => {
   return (
     <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-[9999]">
-      <div className="bg-white w-[720px] rounded-2xl shadow-xl relative overflow-hidden">
+      <div className="bg-white w-full max-w-[90vw] sm:max-w-[720px] rounded-2xl shadow-xl relative overflow-hidden">
         {/* Pink gradient line at the top */}
         <div className="h-1 w-full bg-gradient-to-r from-pink-200 via-pink-400 to-pink-200" />
         
-        <div className="p-8">
+        <div className="p-4 sm:p-8 max-h-[80vh] overflow-y-auto">
           <h2 className="font-serialb text-2xl mb-6 text-pink-500 text-center">
             About Scrapbook Maker
           </h2>
@@ -32,7 +32,7 @@ const AboutModal = ({ onClose }) => {
                     interactive web applications with a focus on user experience and design.
                     </p>
 
-                    <p className="font-serialt text-gray-600">
+                    <p className="font-serialt text-gray-600 font-bold">
                     THIS IS STILL A WORK IN PROGRESS!!! YOU MAY ENCOUNTER SOME ERRORS OR UNFINISHED STUFF :-( 
                     </p>
 
@@ -87,14 +87,6 @@ const AboutModal = ({ onClose }) => {
                   className="px-4 py-2 bg-pink-200 rounded-full text-sm hover:bg-gray-100 transition-colors font-serialb"
                 >
                   GitHub
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/vamontero/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 bg-pink-200 rounded-full text-sm hover:bg-gray-100 transition-colors font-serialb"
-                >
-                  LinkedIn
                 </a>
               </div>
             </div>
