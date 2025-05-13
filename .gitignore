@@ -16,6 +16,8 @@ uploadStickers.js
 # Ignore Cloudinary helper
 src/utils/cloudinary.js
 
+src/hooks
+
 node_modules
 dist
 dist-ssr
