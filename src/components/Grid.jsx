@@ -20,7 +20,6 @@ const Grid = ({ visible, size = 20, color = 'rgba(0, 0, 0, 0.1)' }) => {
 
 export default Grid;
 
-// Helper function for grid snapping
 export const snapToGrid = (value, gridSize) => {
   return Math.round(value / gridSize) * gridSize;
 };

@@ -19,7 +19,7 @@ const WelcomeModal = ({ onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-[9999]">
-      <div className="bg-white w-[720px] rounded-2xl shadow-xl relative overflow-hidden">
+      <div className="bg-white w-full max-w-[90vw] sm:max-w-[720px] rounded-2xl shadow-xl relative overflow-hidden">
         {/* Pink gradient line at the top */}
         <div className="h-1 w-full bg-gradient-to-r from-pink-200 via-pink-400 to-pink-200" />
         

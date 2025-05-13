@@ -24,19 +24,16 @@ export const getImageColors = async (imageUrl) => {
             const b = imageData[i + 2];
             const a = imageData[i + 3];
             
-            // Skip transparent pixels and pure white
             if (a < 200 || (r > 250 && g > 250 && b > 250)) continue;
             
-            // Quantize colors to reduce similar shades
             const quantizedColor = quantizeColor(r, g, b);
             colors.set(quantizedColor, (colors.get(quantizedColor) || 0) + 1);
           }
           
-          // Convert to array and sort by frequency
           const sortedColors = Array.from(colors.entries())
             .sort(([, a], [, b]) => b - a)
             .map(([color]) => color)
-            .filter(color => color !== '#FFFFFF'); // Filter out white
+            .filter(color => color !== '#FFFFFF');
           
           resolve(sortedColors.slice(0, 2));
         } catch (error) {
@@ -54,9 +51,7 @@ export const getImageColors = async (imageUrl) => {
     });
   };
   
-  // Quantize RGB values to reduce similar colors
   const quantizeColor = (r, g, b) => {
-    // Quantize to fewer levels (e.g., 32 levels instead of 256)
     const step = 32;
     r = Math.round(r / step) * step;
     g = Math.round(g / step) * step;
@@ -95,17 +90,16 @@ export const getImageColors = async (imageUrl) => {
       const validColors = allColors
         .filter(colors => colors !== null && colors.length > 0)
         .flat()
-        .filter(color => color && color !== '#FFFFFF'); // Filter out white and null values
+        .filter(color => color && color !== '#FFFFFF'); 
   
       console.log('Found colors:', validColors);
   
-      // Return the first two unique colors or defaults if not enough colors found
       return [
-        validColors[0] || '#F4B185', // Orange fallback
-        validColors[1] || '#F9C846'  // Yellow fallback
+        validColors[0] || '#F4B185', 
+        validColors[1] || '#F9C846' 
       ];
     } catch (error) {
       console.error('Error analyzing sticker colors:', error);
-      return ['#F4B185', '#F9C846']; // Fallback to orange/yellow on error
+      return ['#F4B185', '#F9C846']; 
     }
   };

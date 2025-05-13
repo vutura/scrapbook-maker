@@ -5,12 +5,9 @@ import { analyzeStickerColors } from '../utils/colorUtils';
 import { generateRandomGradients } from '../utils/gradientGenerator';
 
 const SaveModal = ({ onClose, generatePreview, placedStickers }) => {
-  // Preview state
   const [previewUrl, setPreviewUrl] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [copyStatus, setCopyStatus] = useState('');
-
-  // UI state
   const [showCustomColor, setShowCustomColor] = useState(false);
   const [randomGradients, setRandomGradients] = useState(() => generateRandomGradients(6));
   const [customGradientPreset, setCustomGradientPreset] = useState(null);
@@ -26,17 +23,14 @@ const SaveModal = ({ onClose, generatePreview, placedStickers }) => {
     format: 'png'        // 'png' | 'jpeg'
   });
 
-  // Flags for which share-instruction modal is open
   const [showTwitterInstructions, setShowTwitterInstructions] = useState(false);
   const [showPinterestInstructions, setShowPinterestInstructions] = useState(false);
   const [showInstagramInstructions, setShowInstagramInstructions] = useState(false);
 
-  // 1) Generate initial random gradients when modal mounts
   useEffect(() => {
     setRandomGradients(generateRandomGradients(7));
   }, []);
 
-  // 2) Analyze sticker colors to populate a "From Your Creation" gradient
   useEffect(() => {
     const analyzeColors = async () => {
       if (placedStickers.length === 0) return;
@@ -59,18 +53,15 @@ const SaveModal = ({ onClose, generatePreview, placedStickers }) => {
     analyzeColors();
   }, [placedStickers]);
 
-  // 3) Regenerate preview image whenever settings change
   useEffect(() => {
     updatePreview();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [settings]);
 
-  // Handler: regenerate a new batch of random gradients
   const handleRefreshGradients = () => {
-    setRandomGradients(generateRandomGradients(6));
+    setRandomGradients(generateRandomGradients(7));
   };
 
-  // Core: generate the preview data URL
   const updatePreview = async () => {
     setIsLoading(true);
     try {
@@ -90,7 +81,6 @@ const SaveModal = ({ onClose, generatePreview, placedStickers }) => {
     }
   };
 
-  // Download current preview to device
   const handleDownload = () => {
     if (!previewUrl) return;
     try {
@@ -106,7 +96,6 @@ const SaveModal = ({ onClose, generatePreview, placedStickers }) => {
     }
   };
 
-  // Copy preview image to clipboard
   const handleCopyToClipboard = async () => {
     if (!previewUrl) return;
     try {
@@ -120,7 +109,6 @@ const SaveModal = ({ onClose, generatePreview, placedStickers }) => {
     }
   };
 
-  // === Share handlers: open instruction modals ===
   const handleTwitterClick = () => {
     if (!previewUrl) {
       alert('Please wait for the preview to generate before sharing to Twitter.');
@@ -143,7 +131,6 @@ const SaveModal = ({ onClose, generatePreview, placedStickers }) => {
     setShowInstagramInstructions(true);
   };
 
-  // === Continue actions ===
   const proceedToTwitter = () => {
     const shareUrl =
       `https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}` +
@@ -151,7 +138,7 @@ const SaveModal = ({ onClose, generatePreview, placedStickers }) => {
     window.open(shareUrl, '_blank');
     setShowTwitterInstructions(false);
   };
-  // Pinterest & Instagram have no auto-redirect: user instructed to go to site manually
+  // Pinterest & Instagram have no auto-redirect: user needs to go to site manually to post their creation
 
   return (
     <>
@@ -160,7 +147,6 @@ const SaveModal = ({ onClose, generatePreview, placedStickers }) => {
         <div className="bg-white w-[800px] rounded-2xl shadow-xl relative overflow-hidden">
           {/* Top gradient line */}
           <div className="h-1 w-full bg-gradient-to-r from-pink-200 via-pink-400 to-pink-200" />
-
           <div className="p-8">
             <h2 className="font-serialb text-2xl mb-6 text-pink-500 text-center">
               Save Your Creation
@@ -399,9 +385,8 @@ const SaveModal = ({ onClose, generatePreview, placedStickers }) => {
                 </div>
               </div>
 
-              {/* === Right Column: Preview & Sharing === */}
+              {/* === Preview & Sharing === */}
               <div>
-                {/* Preview */}
                 <div
                   className={`rounded-xl p-4 mb-4 ${
                     settings.backgroundType === 'none' ? 'bg-[url("/checkered-bg.png")]' : ''

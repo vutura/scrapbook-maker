@@ -4,11 +4,11 @@ import React from 'react';
 const CreationsModal = ({ onClose }) => {
   return (
     <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-[9999]">
-      <div className="bg-white w-[400px] rounded-2xl shadow-xl relative overflow-hidden">
+      <div className="bg-white w-full max-w-[90vw] sm:max-w-[400px] rounded-2xl shadow-xl relative overflow-hidden">
         {/* Pink gradient line at the top */}
         <div className="h-1 w-full bg-gradient-to-r from-pink-200 via-pink-400 to-pink-200" />
         
-        <div className="p-8">
+        <div className="p-4 sm:p-8 max-h-[80vh] overflow-y-auto">
           <div className="text-center space-y-4">
             <h2 className="font-serialb text-2xl text-pink-500">Creations</h2>
             <p className="font-serialt text-gray-600 text-lg">
